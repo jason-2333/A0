@@ -16,7 +16,7 @@
 </svelte:head>
 
 <h1>Kun Chen's VIS Site</h1>
-<img width="200" src="{base}/mountains.svg" alt="Mountains beside a lake" />
+<img width="200" src="{base}/IMG_0457.jpeg" alt="A brown cat looking at the camera" />
 <div>
   You can click up to
   <select

@@ -33,8 +33,8 @@ npm run build
 The initial limit is 2. Selecting 2, 4, or 6 resets the remaining count.
 Each button click subtracts one; further clicks at zero do nothing.
 
-The title currently uses Kun Chen and the image is a local mountain illustration.
-You can change the name in `+page.svelte` and replace `static/mountains.svg`.
+The title currently uses Kun Chen and the page displays the supplied cat photo.
+You can change the name in `+page.svelte` and replace `static/IMG_0457.jpeg`.
 
 ## Publish and submit
 
