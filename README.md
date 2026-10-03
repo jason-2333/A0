@@ -23,8 +23,8 @@ The static build defaults to base `/A1`. Preview it at
 http://localhost:4173/A1/ or http://localhost:4173/A1/A1/.
 For a different repository name, use `BASE_PATH=/your-repo npm run build`.
 The included GitHub Actions workflow derives BASE_PATH from the repository name.
-Published site: https://jason-2333.github.io/A0/A1/
-Repository: https://github.com/jason-2333/A0. The A0 demo is also retained at https://jason-2333.github.io/A0/A0/.
+Published site: https://jason-2333.github.io/A0/A1
+Repository: https://github.com/jason-2333/A0. The A0 demo is also retained at https://jason-2333.github.io/A0/A0.
 
 ## Implemented requirements
 
