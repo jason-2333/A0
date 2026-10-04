@@ -1,54 +1,87 @@
-# A0: Set Up
+# CSCI 5609 — A0 and A1
 
-Course instructions: https://github.com/UMN-CSCI5609/Assignments-Instructions/tree/main/A0-Setup
+SvelteKit + TypeScript + D3 implementation of the Summer Movies assignment.
+This is the original A0 repository, continued for A1 as required by the assignment.
+`src/routes/A0/+page.svelte` preserves the A0 exercise;
+`src/routes/A1/+page.svelte` contains the A1 visualizations.
+The `A0` branch preserves the A0-only submission. The `A1` branch contains the
+combined project. `main` matches the combined project and deploys GitHub Pages.
 
-The SvelteKit project is directly inside this folder. The completed page is
-`src/routes/+page.svelte`; the original course template is saved in
-`reference/A0.svelte.txt`.
-
-## Run locally
-
-With Node.js 24 and npm installed:
-
-```sh
-npm ci
-npm run dev -- --open
-```
-
-On this Mac, Node and pnpm are currently available through the Codex runtime.
-If `npm` is not found, use:
+## Run
 
 ```sh
-export PATH="/Users/kunchen/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/bin:/Users/kunchen/.cache/codex-runtimes/codex-primary-runtime/dependencies/bin/fallback:$PATH"
-pnpm dlx npm run dev -- --open
+npm install
+npm run dev
 ```
 
-## Check
+Open http://localhost:5173/A1 for A1 or http://localhost:5173/A0 for A0.
+The root page also shows A0 to preserve the original A0 submission link.
 
 ```sh
 npm run check
 npm run build
+npm run preview
 ```
 
-The initial limit is 2. Selecting 2, 4, or 6 resets the remaining count.
-Each button click subtracts one; further clicks at zero do nothing.
+The static build defaults to base `/A0`. Preview it at
+http://localhost:4173/A0/A1/.
+For a different repository name, use `BASE_PATH=/your-repo npm run build`.
+The included GitHub Actions workflow derives BASE_PATH from the repository name.
+Published A1 route: https://jason-2333.github.io/A0/A1/
+Preserved A0 route: https://jason-2333.github.io/A0/A0/
+Repository: https://github.com/jason-2333/A0
+A0 snapshot branch: https://github.com/jason-2333/A0/tree/A0
+A1 branch: https://github.com/jason-2333/A0/tree/A1
 
-The title currently uses Kun Chen and the page displays the supplied cat photo.
-You can change the name in `+page.svelte` and replace `static/IMG_0457.jpeg`.
+## Implemented requirements
 
-## Publish and submit
+- CSV fetched from `static/summer_movies.csv` through D3 and the SvelteKit base path.
+- 899 distinct titles, 24 known genres, release years 1946–2024.
+- Numeric fields parsed as numbers, years as Date objects, genres as arrays.
+- Missing values: one unknown year and 56 unknown runtimes stay null;
+  18 unknown genre lists become empty arrays. The starter TMovie type is
+  extended with nullable year/runtime and the CSV's simple_title field.
+- Distribution: sorted bars, both axis labels, values, hover/focus/click readouts.
+- Q1: each year's top three recomputed from that year's movie counts;
+  the chart does not track only the overall top three. Ties use alphabetical
+  order to select exactly three. All genres are displayed, with year controls.
+- Q2: all 24 genres in one co-occurrence matrix, including zero-count pairs.
+  Gray diagonal cells show genre totals. Counts and conditional row shares
+  are separate views with a color legend and hover/focus/click readouts.
+- Dataset-derived insight paragraphs for both questions.
+- Expandable design notebook: three distinct sketches for each question,
+  encodings, comparisons, and explanations of the selected designs.
+- Mobile layout with horizontally scrollable charts, keyboard interactions,
+  reduced-motion support, loading/error states, and a retry button.
 
-1. Publish this folder as a GitHub repository named `A0` on the `main` branch.
-   If you use a different repository name, update `/A0` in `svelte.config.js`
-   and `.github/workflows/build-and-deploy.yml`.
-2. Apply for GitHub student benefits. The course permits a temporarily public
-   repository while approval is pending; afterward use a private repository.
-3. Select Settings > Pages > Source > GitHub Actions.
-4. Push the project, wait for deployment, and verify the public page works.
-5. Give the TA (`mkrstulovic`) and instructor access to the private repository
-   as required by the Canvas rubric. Confirm the instructor's GitHub username.
-6. Submit both the GitHub Pages URL and repository URL on Canvas.
-7. Complete the separately announced AI research consent/opt-out form.
+## Source and template
 
-GitHub publication, collaborator invitations, the form, and Canvas submission
-have not been completed by this local project setup.
+Instructions: https://github.com/UMN-CSCI5609/Assignments-Instructions/tree/main/A1-Visual-Encoding
+
+The original instruction, loader, bar component, and type files are retained in
+`reference/`. `Bar.svelte` keeps the starter props and D3 scale approach;
+its rendering and axes are completed and adapted to the responsive design.
+Data is the CSV included in the course's A1 instruction folder, from IMDb
+non-commercial data. Genre totals include each genre of a multi-genre title.
+Q1 excludes only unknown years; distribution and Q2 use all titles with genres.
+Co-occurrence is an association count, not a Pearson correlation or causation.
+
+## Local verification
+
+- `npm run check`: zero errors and zero warnings.
+- `npm run build`: adapter-static output successfully written to `build/`.
+- Independently recounted all annual top-three rankings and all 576 matrix cells;
+  verified symmetry, diagonal counts, unique IDs, and missing-value handling.
+- Example totals: Drama 486; Comedy 270; Romance 189.
+- Comedy + Drama: 108 movies (40% of Comedy movies).
+- Drama ranks in the top three in 73 of 78 years with known genres.
+
+## Report and deployment
+
+The five-page PDF report is at `output/pdf/A1-Visual-Encoding-Report.pdf`. It
+contains three sketches per question, encoding descriptions and comparisons,
+design justifications, screenshots of both implemented visualizations,
+data-backed answers, and the repository and Pages links.
+
+The site is published using GitHub Actions. This repository is public because
+the current GitHub Free plan does not support Pages from a private personal repository.
