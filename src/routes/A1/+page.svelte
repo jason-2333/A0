@@ -39,7 +39,7 @@
 
 <div class="site">
   <header class="masthead">
-    <a class="brand" href="{base}/"><span class="brand-mark" aria-hidden="true">S<span>☼</span></span>SUMMER, ON SCREEN</a>
+    <a class="brand" href="{base}/A1/"><span class="brand-mark" aria-hidden="true">S<span>☼</span></span>SUMMER, ON SCREEN</a>
     <nav aria-label="Page sections"><a href="#distribution">The collection</a><a href="#annual">Through the years</a><a href="#connections">Genre connections</a></nav>
     <span class="course-tag">CSCI 5609 <span>/</span> A1</span>
   </header>
